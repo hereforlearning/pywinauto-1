@@ -28,7 +28,7 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
+# -*- coding: UTF-8 -*-
 """Run some automations to test things"""
 from __future__ import unicode_literals
 from __future__ import print_function
@@ -38,27 +38,81 @@ from pywinauto import application
 #from pywinauto import tests
 #from pywinauto.findbestmatch import MatchError
 
+#
+# # application.set_timing(3, .5, 10, .5, .4, .2, .2, .1, .2, .5)
+# app = application.Application()
+# app.connect("SciTEWindow")
+# # app["WindowsForms10.Window.8.app.0.378734a"]["WindowsForms10.EDIT.app.0.378734a4"].set_edit_text("fasfsf")
+# # app["WindowsForms10.Window.8.app.0.378734a"]["WindowsForms10.BUTTON.app.0.378734a11"].click()
+# app['SciTEWindow'][''].click()
+#
+# exit(1)
 
-#application.set_timing(3, .5, 10, .5, .4, .2, .2, .1, .2, .5)
+# application.set_timing(3, .5, 10, .5, .4, .2, .2, .1, .2, .5)
+app = application.Application(backend="uia")
+app.connect(path=r"K:\develop\KlST\SPA\HC32L136_SDK\编程工具\(EXE)HDSC Programmer Config Tool_v2.4.4\(EXE)HDSC Programmer Config Tool_v2.4.4")
+# app["WindowsForms10.Window.8.app.0.378734a"]["WindowsForms10.BUTTON.app.0.378734a2"].set_edit_text("fasfsf")
+# app["WindowsForms10.Window.8.app.0.378734a"]["WindowsForms10.BUTTON.app.0.378734a11"].click()
+# app['WindowsForms10.Window.8.app.0.378734a'].wait('ready')
+app['HDSC Programmer Config Tool']['Edit4'].set_text("sdad")
+# statusStrip1
+# 2.4
+# www.hdsc.com.cn
+# 滚码功能
+# Flash
+# SRAM
+# XTAL
+# 系列
+# 芯片名称
+# MCU信息
+# 选项字节设置
+# 页擦除
+# 片擦除
+# 计数(Dec)
+# 芯片加密
+# 复  位
+# 供    电
+# 文件加密
+# 115200
+# XTAL(MHz)
+# 目标Hex文件
+# 密钥
+# 波特率(bps)
+# 芯片名称
+# 编程时写选项字节
+# 版本：
+# 确定
+# 带屏版
+# 配置文件名
+
+exit(1)
+
 
 app = application.Application()
 app.start(r"notepad.exe")
 
 app['Notepad'].wait('ready')
+# app['Notepad'].print_control_identifiers
+# app.Properties.print_control_identifiers()
+# app['Notepad'].click("文件->页面设置")
+# exit(1)
+app['Notepad'].menu_select("文件->页面设置")
+app['页面设置']['Button6'].click()
+exit(1)
 
-app['Notepad'].menu_select("File->PageSetup")
+
 
 # ----- Page Setup Dialog ----
 # Select the 4th combobox item
-app['PageSetupDlg']['ComboBox1'].select(4)
+app['文本编辑器']['ExpandByDef'].check()
 
 # Select the 'Letter' combobox item
-app['PageSetupDlg']['ComboBox1'].select("Letter")
+app['页面设置']['ComboBox1'].select("信封")
 
 # ----- Next Page Setup Dialog ----
-app['PageSetupDlg']['Printer'].click()
+# app['页面设置']['确定'].click()
 
-app['PageSetupDlg']['Network'].click()
+# app['页面设置']['Network'].click()
 
 # ----- Connect To Printer Dialog ----
 # Select a checkbox
