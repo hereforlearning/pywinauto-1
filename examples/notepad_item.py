@@ -34,7 +34,7 @@ from __future__ import unicode_literals
 from __future__ import print_function
 
 from pywinauto import application
-
+import logging
 #from pywinauto import tests
 #from pywinauto.findbestmatch import MatchError
 
@@ -48,15 +48,60 @@ from pywinauto import application
 #
 # exit(1)
 
+import logging
+
+# create logger
+logger = logging.getLogger("logging_tryout2")
+logger.setLevel(logging.DEBUG)
+
+# create console handler and set level to debug
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+# create formatter
+formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
+                              "%Y-%m-%d %H:%M:%S")
+# add formatter to ch
+ch.setFormatter(formatter)
+
+
+
+# add ch to logger
+logger.addHandler(ch)
+def setcheckbox(appstr,ctrlstr,status):
+    logger.info("122222222222")
+    if(app[appstr][ctrlstr].get_toggle_state()!=status):
+        app[appstr][ctrlstr].toggle()
+
+
+
+
 # application.set_timing(3, .5, 10, .5, .4, .2, .2, .1, .2, .5)
 app = application.Application(backend="uia")
-app.connect(path=r"K:\develop\KlST\SPA\HC32L136_SDK\编程工具\(EXE)HDSC Programmer Config Tool_v2.4.4\(EXE)HDSC Programmer Config Tool_v2.4.4")
+appconnect=app.connect(path=r"K:\develop\KlST\SPA\HC32L136_SDK\编程工具\(EXE)HDSC Programmer Config Tool_v2.4.4\(EXE)HDSC Programmer Config Tool_v2.4.4\ConfigTool.exe")
 # app["WindowsForms10.Window.8.app.0.378734a"]["WindowsForms10.BUTTON.app.0.378734a2"].set_edit_text("fasfsf")
-# app["WindowsForms10.Window.8.app.0.378734a"]["WindowsForms10.BUTTON.app.0.378734a11"].click()
+
+# app_dlg = appconnect.window_()
+# app_dlg.child_window(class_name='WindowsForms10.BUTTON.app.0.378734a12').click()
+
+# app["HDSC Programmer Config Tool"].print_control_identifiers()
+# exit(1)
+
+logger.info("start")
+
+# app["HDSC Programmer Config Tool"]["WindowsForms10.BUTTON.app.0.378734a12"].click()
 # app['WindowsForms10.Window.8.app.0.378734a'].wait('ready')
 # app['HDSC Programmer Config Tool']['Edit4'].set_text("sdad")
+
+app['HDSC Programmer Config Tool']['波特率(bps)'].menu_select("115200")
 app['HDSC Programmer Config Tool']['Edit4'].set_text("sdad")
 app['HDSC Programmer Config Tool']['Edit6'].set_text("HC32L136x8/HC32L130x8")
+# (print(app['HDSC Programmer Config Tool']['供电'].get_toggle_state()))
+setcheckbox('HDSC Programmer Config Tool','芯片加密',0)
+setcheckbox('HDSC Programmer Config Tool','片擦除',1)
+setcheckbox('HDSC Programmer Config Tool','复 位',1)
+setcheckbox('HDSC Programmer Config Tool','供 电',1)
+
 
 # pywinauto.findbestmatch.MatchError: Could not find 'asdf' in 'dict_keys(['statusStrip1', 'statusStrip1StatusBar', 'StatusBar', 'Static', '请检查您的PGM是否为带屏版,带屏版才可配置此选项!', '请检查您的PGM是否为带屏版,带屏版才可配置此选项!Static', 'Static0', 'Static1', 'Static2', '2.4', '2.4Static', 'Static3', 'www.hdsc.com.cnStatic', 'www.hdsc.com.cn', 'www.hdsc.com.cn0', 'www.hdsc.com.cn1', 'www.hdsc.com.cn2', 'Hyperlink', 'www.hdsc.com.cnHyperlink', 'GroupBox', 'MCU信息GroupBox', 'FlashEdit', 'Edit', '滚码功能', 'CheckBox', '滚码功能CheckBox', 'Static4', 'FlashStatic', 'Flash', 'Static5', 'SRAM', 'SRAMStatic', 'Static6', 'XTAL', 'XTALStatic', 'Static7', '系列', '系列Static', 'Static8', '芯片名称Static', '芯片名称', 'Static9', 'MCU信息', 'MCU信息Static', 'Pane', 'MCU信息Pane', 'GroupBox0', 'GroupBox1', 'GroupBox2', '芯片名称GroupBox', 'Pane0', 'Pane1', 'Pane2', '芯片名称Pane', '选项字节设置', 'Button', '选项字节设置Button', '页擦除', 'CheckBox0', 'CheckBox1', 'CheckBox2', '页擦除CheckBox', '片擦除', 'CheckBox3', '片擦除CheckBox', 'XTAL(MHz)Edit', 'Edit0', 'Edit1', 'Edit2', 'CheckBox4', '计数(Dec)', '计数(Dec)CheckBox', '目标Hex文件Pane', 'Pane3', 'CheckBox5', '芯片加密CheckBox', '芯片加密', '复  位', 'CheckBox6', '复  位CheckBox', '供    电', 'CheckBox7', '供    电CheckBox', '文件加密', '文件加密CheckBox', 'CheckBox8', 'ComboBox256000', 'ComboBox115200', 'ComboBox76800', 'ComboBox', 'ComboBox19200', 'ComboBox128000', 'ComboBox38400', '波特率(bps)ComboBox', '打开Button', '打开', 'Button0', 'Button1', 'Button2', 'XTAL(MHz)Edit0', 'XTAL(MHz)Edit1', 'XTAL(MHz)Edit2', 'Edit3', '目标Hex文件Edit', 'Edit4', '密钥Edit', 'Edit5', '芯片名称Edit', 'Edit6', 'Static10', 'XTAL(MHz)', 'XTAL(MHz)Static', 'Static11', '目标Hex文件', '目标Hex文件Static', 'Static12', '密钥', '密钥Static', 'Static13', '波特率(bps)', '波特率(bps)Static', 'Static14', '芯片名称Static0', '芯片名称Static1', '芯片名称Static2', '芯片名称0', '芯片名称1', '芯片名称2', 'CheckBox9', '编程时写选项字节CheckBox', '编程时写选项字节', 'Static15', '版本：Static', '版本：', 'Pane4', 'FlashPane', '配置文件名Edit', 'Edit7', '确定Button', '确定', 'Button3', 'www.hdsc.com.cn3', 'GroupBox3', 'www.hdsc.com.cnGroupBox', '带屏版', 'CheckBox10', '带屏版CheckBox', 'Static16', '配置文件名Static', '配置文件名', 'TitleBar', '关闭', '关闭Button', 'Button4'])'
 

@@ -48,7 +48,7 @@ import time
 import os.path
 
 from pywinauto import WindowAmbiguousError
-
+sys.argv[1]="www.baidu.com"
 if len(sys.argv) < 2:
     print("please specify a web address to download")
     sys.exit()
